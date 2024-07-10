@@ -1,0 +1,30 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"folder": {
+			"name": "Dimensiones"
+		},
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "evaluacionesagropecuariascsvds",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          {COD.DEP.;DEPARTAMENTO;C0D.MUN.;MUNICIPIO;GRUPO DE CULTIVO;SUBGRUPO DE CULTIVO;CULTIVO;DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO;ANO;PERIODO;Area Sembrada(ha);Area Cosechada(ha);Produccion(t);Rendimiento(t/ha);ESTADO FISICO PRODUCCION;NOMBRE CIENTIFICO;CICLO DE CULTIVO} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1"
+			]
+		}
+	}
+}
