@@ -1,0 +1,505 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "dfevalagropecuarias-e09107a9-ec56-4e12-a69e-8b8dc54c8722"
+		},
+		"AzureMySql1_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureMySql1'"
+		},
+		"evalagropecuariasstorage_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'evalagropecuariasstorage'"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureMySql1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureMySql",
+				"typeProperties": {
+					"connectionString": "[parameters('AzureMySql1_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/evalagropecuariasstorage')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"connectionString": "[parameters('evalagropecuariasstorage_connectionString')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/cultivods')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureMySql1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Dimensiones"
+				},
+				"annotations": [],
+				"type": "AzureMySqlTable",
+				"schema": [
+					{
+						"name": "f020_cod_cultivo_spk",
+						"type": "int",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f020_nombre_cultivo",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f020_nombre_cientifico",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f020_nombre_grupo",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f020_nombre_subgrupo",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f020_sistema_productivo",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f020_ciclo_cultivo",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f020_fecha_ini",
+						"type": "datetime",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f020_fecha_fin",
+						"type": "datetime",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f020_version",
+						"type": "int",
+						"precision": 0,
+						"scale": 0
+					}
+				],
+				"typeProperties": {
+					"tableName": "t020_dim_cultivo"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureMySql1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/estadoproductods')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureMySql1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Dimensiones"
+				},
+				"annotations": [],
+				"type": "AzureMySqlTable",
+				"schema": [
+					{
+						"name": "f040_cod_estado_spk",
+						"type": "int",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f040_cod_estado",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f040_nombre_estado",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f040_fecha_ini",
+						"type": "datetime",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f040_fecha_fin",
+						"type": "datetime",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f040_version",
+						"type": "int",
+						"precision": 0,
+						"scale": 0
+					}
+				],
+				"typeProperties": {
+					"tableName": "t040_dim_estado_producto"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureMySql1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/evaluacionesagropecuariascsvds')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "evalagropecuariasstorage",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "EVAMData"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "Evaluaciones_Agropecuarias_Municipales_EVA.csv",
+						"folderPath": "Source",
+						"container": "evalagropecuariasc"
+					},
+					"columnDelimiter": ";",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "COD.DEP.",
+						"type": "String"
+					},
+					{
+						"name": "DEPARTAMENTO",
+						"type": "String"
+					},
+					{
+						"name": "C0D.MUN.",
+						"type": "String"
+					},
+					{
+						"name": "MUNICIPIO",
+						"type": "String"
+					},
+					{
+						"name": "GRUPO DE CULTIVO",
+						"type": "String"
+					},
+					{
+						"name": "SUBGRUPO DE CULTIVO",
+						"type": "String"
+					},
+					{
+						"name": "CULTIVO",
+						"type": "String"
+					},
+					{
+						"name": "DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO",
+						"type": "String"
+					},
+					{
+						"name": "ANO",
+						"type": "String"
+					},
+					{
+						"name": "PERIODO",
+						"type": "String"
+					},
+					{
+						"name": "Area Sembrada(ha)",
+						"type": "String"
+					},
+					{
+						"name": "Area Cosechada(ha)",
+						"type": "String"
+					},
+					{
+						"name": "Produccion(t)",
+						"type": "String"
+					},
+					{
+						"name": "Rendimiento(t/ha)",
+						"type": "String"
+					},
+					{
+						"name": "ESTADO FISICO PRODUCCION",
+						"type": "String"
+					},
+					{
+						"name": "NOMBRE CIENTIFICO",
+						"type": "String"
+					},
+					{
+						"name": "CICLO DE CULTIVO",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/evalagropecuariasstorage')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/factproduccionds')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureMySql1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Hechos"
+				},
+				"annotations": [],
+				"type": "AzureMySqlTable",
+				"schema": [
+					{
+						"name": "f060_rowid",
+						"type": "int",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f060_cod_municipio",
+						"type": "int",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f060_cod_cultivo",
+						"type": "int",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f060_periodo",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f060_cod_estado",
+						"type": "int",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f060_area_sembrada",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					},
+					{
+						"name": "f060_area_cosechada",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					},
+					{
+						"name": "f060_cant_produccion",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					},
+					{
+						"name": "f060_rendimiento",
+						"type": "decimal",
+						"precision": 10,
+						"scale": 2
+					}
+				],
+				"typeProperties": {
+					"tableName": "t060_fact_produccion"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureMySql1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/tiempods')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureMySql1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Dimensiones"
+				},
+				"annotations": [],
+				"type": "AzureMySqlTable",
+				"schema": [
+					{
+						"name": "f030_periodo_spk",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f030_year",
+						"type": "int",
+						"precision": 0,
+						"scale": 0
+					}
+				],
+				"typeProperties": {
+					"tableName": "t030_dim_tiempo"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureMySql1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ubicacionds')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureMySql1",
+					"type": "LinkedServiceReference"
+				},
+				"folder": {
+					"name": "Dimensiones"
+				},
+				"annotations": [],
+				"type": "AzureMySqlTable",
+				"schema": [
+					{
+						"name": "f010_cod_municipio",
+						"type": "int",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f010_nombre_municipio",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f010_cod_dpto",
+						"type": "int",
+						"precision": 0,
+						"scale": 0
+					},
+					{
+						"name": "f010_nombre_dpto",
+						"type": "varchar",
+						"precision": 0,
+						"scale": 0
+					}
+				],
+				"typeProperties": {
+					"tableName": "t010_dim_ubicacion"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureMySql1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
+			"type": "Microsoft.DataFactory/factories/dataflows",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"type": "MappingDataFlow",
+				"typeProperties": {
+					"sources": [
+						{
+							"dataset": {
+								"referenceName": "evaluacionesagropecuariascsvds",
+								"type": "DatasetReference"
+							},
+							"name": "source1"
+						}
+					],
+					"sinks": [],
+					"transformations": [],
+					"scriptLines": [
+						"source(output(",
+						"          {COD.DEP.} as string,",
+						"          DEPARTAMENTO as string,",
+						"          {C0D.MUN.} as string,",
+						"          MUNICIPIO as string,",
+						"          {GRUPO DE CULTIVO} as string,",
+						"          {SUBGRUPO DE CULTIVO} as string,",
+						"          CULTIVO as string,",
+						"          {DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO} as string,",
+						"          ANO as string,",
+						"          PERIODO as string,",
+						"          {Area Sembrada(ha)} as string,",
+						"          {Area Cosechada(ha)} as string,",
+						"          {Produccion(t)} as string,",
+						"          {Rendimiento(t/ha)} as string,",
+						"          {ESTADO FISICO PRODUCCION} as string,",
+						"          {NOMBRE CIENTIFICO} as string,",
+						"          {CICLO DE CULTIVO} as string",
+						"     ),",
+						"     allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     ignoreNoFilesFound: false) ~> source1"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/evaluacionesagropecuariascsvds')]"
+			]
+		}
+	]
+}

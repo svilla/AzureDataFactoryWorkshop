@@ -1,0 +1,15 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "dfevalagropecuarias-e09107a9-ec56-4e12-a69e-8b8dc54c8722"
+		},
+		"AzureMySql1_connectionString": {
+			"value": ""
+		},
+		"evalagropecuariasstorage_connectionString": {
+			"value": ""
+		}
+	}
+}
