@@ -24,7 +24,71 @@
 		},
 		"schema": [
 			{
-				"name": "COD.DEP.;DEPARTAMENTO;C0D.MUN.;MUNICIPIO;GRUPO DE CULTIVO;SUBGRUPO DE CULTIVO;CULTIVO;DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO;ANO;PERIODO;Area Sembrada(ha);Area Cosechada(ha);Produccion(t);Rendimiento(t/ha);ESTADO FISICO PRODUCCION;NOMBRE CIENTIFICO;CICLO DE CULTIVO",
+				"name": "COD.DEP.",
+				"type": "String"
+			},
+			{
+				"name": "DEPARTAMENTO",
+				"type": "String"
+			},
+			{
+				"name": "C0D.MUN.",
+				"type": "String"
+			},
+			{
+				"name": "MUNICIPIO",
+				"type": "String"
+			},
+			{
+				"name": "GRUPO DE CULTIVO",
+				"type": "String"
+			},
+			{
+				"name": "SUBGRUPO DE CULTIVO",
+				"type": "String"
+			},
+			{
+				"name": "CULTIVO",
+				"type": "String"
+			},
+			{
+				"name": "DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO",
+				"type": "String"
+			},
+			{
+				"name": "ANO",
+				"type": "String"
+			},
+			{
+				"name": "PERIODO",
+				"type": "String"
+			},
+			{
+				"name": "Area Sembrada(ha)",
+				"type": "String"
+			},
+			{
+				"name": "Area Cosechada(ha)",
+				"type": "String"
+			},
+			{
+				"name": "Produccion(t)",
+				"type": "String"
+			},
+			{
+				"name": "Rendimiento(t/ha)",
+				"type": "String"
+			},
+			{
+				"name": "ESTADO FISICO PRODUCCION",
+				"type": "String"
+			},
+			{
+				"name": "NOMBRE CIENTIFICO",
+				"type": "String"
+			},
+			{
+				"name": "CICLO DE CULTIVO",
 				"type": "String"
 			}
 		]
