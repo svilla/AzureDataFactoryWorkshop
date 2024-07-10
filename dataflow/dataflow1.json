@@ -16,14 +16,23 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "select1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          {COD.DEP.;DEPARTAMENTO;C0D.MUN.;MUNICIPIO;GRUPO DE CULTIVO;SUBGRUPO DE CULTIVO;CULTIVO;DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO;ANO;PERIODO;Area Sembrada(ha);Area Cosechada(ha);Produccion(t);Rendimiento(t/ha);ESTADO FISICO PRODUCCION;NOMBRE CIENTIFICO;CICLO DE CULTIVO} as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1"
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source1 select(mapColumn(",
+				"          {COD.DEP.;DEPARTAMENTO;C0D.MUN.;MUNICIPIO;GRUPO DE CULTIVO;SUBGRUPO DE CULTIVO;CULTIVO;DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO;ANO;PERIODO;Area Sembrada(ha);Area Cosechada(ha);Produccion(t);Rendimiento(t/ha);ESTADO FISICO PRODUCCION;NOMBRE CIENTIFICO;CICLO DE CULTIVO}",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1"
 			]
 		}
 	}
