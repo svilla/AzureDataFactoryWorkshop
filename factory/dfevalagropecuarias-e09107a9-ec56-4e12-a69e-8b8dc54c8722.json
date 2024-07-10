@@ -1,0 +1,9 @@
+{
+	"name": "dfevalagropecuarias-e09107a9-ec56-4e12-a69e-8b8dc54c8722",
+	"location": "westus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "4ffce639-9b55-4e32-92b0-ed1c8fa91a05",
+		"tenantId": "243bd71d-cef7-442d-b37f-3ff10a3e2832"
+	}
+}

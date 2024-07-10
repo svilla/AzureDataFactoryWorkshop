@@ -1,0 +1,44 @@
+{
+	"name": "ubicacionds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureMySql1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Dimensiones"
+		},
+		"annotations": [],
+		"type": "AzureMySqlTable",
+		"schema": [
+			{
+				"name": "f010_cod_municipio",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f010_nombre_municipio",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f010_cod_dpto",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f010_nombre_dpto",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"tableName": "t010_dim_ubicacion"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

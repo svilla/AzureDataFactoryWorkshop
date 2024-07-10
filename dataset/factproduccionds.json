@@ -1,0 +1,74 @@
+{
+	"name": "factproduccionds",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureMySql1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Hechos"
+		},
+		"annotations": [],
+		"type": "AzureMySqlTable",
+		"schema": [
+			{
+				"name": "f060_rowid",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f060_cod_municipio",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f060_cod_cultivo",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f060_periodo",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f060_cod_estado",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f060_area_sembrada",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "f060_area_cosechada",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "f060_cant_produccion",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			},
+			{
+				"name": "f060_rendimiento",
+				"type": "decimal",
+				"precision": 10,
+				"scale": 2
+			}
+		],
+		"typeProperties": {
+			"tableName": "t060_fact_produccion"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

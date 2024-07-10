@@ -1,0 +1,32 @@
+{
+	"name": "tiempods",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureMySql1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Dimensiones"
+		},
+		"annotations": [],
+		"type": "AzureMySqlTable",
+		"schema": [
+			{
+				"name": "f030_periodo_spk",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f030_year",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"tableName": "t030_dim_tiempo"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

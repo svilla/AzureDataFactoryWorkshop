@@ -1,0 +1,80 @@
+{
+	"name": "cultivods",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureMySql1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Dimensiones"
+		},
+		"annotations": [],
+		"type": "AzureMySqlTable",
+		"schema": [
+			{
+				"name": "f020_cod_cultivo_spk",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f020_nombre_cultivo",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f020_nombre_cientifico",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f020_nombre_grupo",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f020_nombre_subgrupo",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f020_sistema_productivo",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f020_ciclo_cultivo",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f020_fecha_ini",
+				"type": "datetime",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f020_fecha_fin",
+				"type": "datetime",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f020_version",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"tableName": "t020_dim_cultivo"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

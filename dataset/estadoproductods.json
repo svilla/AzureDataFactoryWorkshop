@@ -1,0 +1,56 @@
+{
+	"name": "estadoproductods",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureMySql1",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Dimensiones"
+		},
+		"annotations": [],
+		"type": "AzureMySqlTable",
+		"schema": [
+			{
+				"name": "f040_cod_estado_spk",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f040_cod_estado",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f040_nombre_estado",
+				"type": "varchar",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f040_fecha_ini",
+				"type": "datetime",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f040_fecha_fin",
+				"type": "datetime",
+				"precision": 0,
+				"scale": 0
+			},
+			{
+				"name": "f040_version",
+				"type": "int",
+				"precision": 0,
+				"scale": 0
+			}
+		],
+		"typeProperties": {
+			"tableName": "t040_dim_estado_producto"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
