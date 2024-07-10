@@ -1,0 +1,43 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "evaluacionesagropecuariascsvds",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				}
+			],
+			"sinks": [],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          {COD.DEP.} as string,",
+				"          DEPARTAMENTO as string,",
+				"          {C0D.MUN.} as string,",
+				"          MUNICIPIO as string,",
+				"          {GRUPO DE CULTIVO} as string,",
+				"          {SUBGRUPO DE CULTIVO} as string,",
+				"          CULTIVO as string,",
+				"          {DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO} as string,",
+				"          ANO as string,",
+				"          PERIODO as string,",
+				"          {Area Sembrada(ha)} as string,",
+				"          {Area Cosechada(ha)} as string,",
+				"          {Produccion(t)} as string,",
+				"          {Rendimiento(t/ha)} as string,",
+				"          {ESTADO FISICO PRODUCCION} as string,",
+				"          {NOMBRE CIENTIFICO} as string,",
+				"          {CICLO DE CULTIVO} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1"
+			]
+		}
+	}
+}
