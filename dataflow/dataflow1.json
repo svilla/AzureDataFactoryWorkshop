@@ -41,7 +41,8 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> ubicacionflow",
-				"ubicacionflow aggregate() ~> removeduplicates"
+				"ubicacionflow aggregate(groupBy({COD.DEP.},",
+				"          {C0D.MUN.})) ~> removeduplicates"
 			]
 		}
 	}
