@@ -59,7 +59,7 @@
 				"          DEPARTAMENTO,",
 				"          {C0D.MUN.},",
 				"          MUNICIPIO),",
-				"     ID = byPosition()) ~> removeduplicatesmunanddpto",
+				"     ID = right(concat(left(concat({COD.DEP.}, DEPARTAMENTO, {C0D.MUN.}, MUNICIPIO), 10), tryParseInt(concat({COD.DEP.}, DEPARTAMENTO, {C0D.MUN.}, MUNICIPIO))), 11)) ~> removeduplicatesmunanddpto",
 				"removeduplicatesmunanddpto select(mapColumn(",
 				"          f010_cod_dpto = {COD.DEP.},",
 				"          f010_nombre_dpto = DEPARTAMENTO,",
