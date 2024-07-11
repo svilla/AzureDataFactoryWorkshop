@@ -29,7 +29,7 @@
 					"name": "SelectUbicacionColums"
 				},
 				{
-					"name": "derivedColumn1"
+					"name": "RemoveSemicolumnCharacter"
 				}
 			],
 			"scriptLines": [
@@ -60,7 +60,7 @@
 				"          {C0D.MUN.},",
 				"          MUNICIPIO),",
 				"     ID = count({C0D.MUN.})) ~> removeduplicatesmunanddpto",
-				"derivedColumn1 select(mapColumn(",
+				"RemoveSemicolumnCharacter select(mapColumn(",
 				"          f010_cod_dpto = {COD.DEP.},",
 				"          f010_nombre_dpto = DEPARTAMENTO,",
 				"          f010_cod_municipio = {C0D.MUN.},",
@@ -68,7 +68,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectUbicacionColums",
-				"removeduplicatesmunanddpto derive({C0D.MUN.} = replace({C0D.MUN.},';','')) ~> derivedColumn1",
+				"removeduplicatesmunanddpto derive({C0D.MUN.} = replace({C0D.MUN.},';','')) ~> RemoveSemicolumnCharacter",
 				"SelectUbicacionColums sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
