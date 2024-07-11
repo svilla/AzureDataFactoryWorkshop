@@ -27,6 +27,9 @@
 				},
 				{
 					"name": "SelectUbicacionColums"
+				},
+				{
+					"name": "RemoveSemicolumn"
 				}
 			],
 			"scriptLines": [
@@ -52,7 +55,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> UbicacionFlow",
-				"UbicacionFlow aggregate(groupBy({COD.DEP.},",
+				"RemoveSemicolumn aggregate(groupBy({COD.DEP.},",
 				"          DEPARTAMENTO,",
 				"          {C0D.MUN.},",
 				"          MUNICIPIO),",
@@ -65,6 +68,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectUbicacionColums",
+				"UbicacionFlow derive({C0D.MUN.} = ERROR_FUNCTION('')) ~> RemoveSemicolumn",
 				"SelectUbicacionColums sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
