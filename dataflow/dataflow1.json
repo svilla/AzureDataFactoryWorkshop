@@ -24,7 +24,7 @@
 				"          {SUBGRUPO DE CULTIVO} as string,",
 				"          CULTIVO as string,",
 				"          {DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO} as string,",
-				"          ANO as string,",
+				"          ANO as integer,",
 				"          PERIODO as string,",
 				"          {Area Sembrada(ha)} as string,",
 				"          {Area Cosechada(ha)} as string,",
