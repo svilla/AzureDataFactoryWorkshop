@@ -9,7 +9,7 @@
 						"referenceName": "evaluacionesagropecuariascsvds",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "cultivoflow"
 				}
 			],
 			"sinks": [],
@@ -36,7 +36,7 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1"
+				"     ignoreNoFilesFound: false) ~> cultivoflow"
 			]
 		}
 	}
