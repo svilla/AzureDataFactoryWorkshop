@@ -15,7 +15,7 @@
 			"sinks": [],
 			"transformations": [
 				{
-					"name": "removeduplicates"
+					"name": "removeduplicatesmunanddpto"
 				}
 			],
 			"scriptLines": [
@@ -42,7 +42,8 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> ubicacionflow",
 				"ubicacionflow aggregate(groupBy({COD.DEP.},",
-				"          {C0D.MUN.})) ~> removeduplicates"
+				"          {C0D.MUN.}),",
+				"     column1 = ERROR_FUNCTION('')) ~> removeduplicatesmunanddpto"
 			]
 		}
 	}
