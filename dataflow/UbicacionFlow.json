@@ -30,6 +30,9 @@
 				},
 				{
 					"name": "derivedColumn1"
+				},
+				{
+					"name": "derivedColumn2"
 				}
 			],
 			"scriptLines": [
@@ -59,7 +62,7 @@
 				"          DEPARTAMENTO,",
 				"          {C0D.MUN.},",
 				"          MUNICIPIO),",
-				"     ID = toInteger(left(toString(abs(random(1) * 100000000000)), 11))) ~> removeduplicatesmunanddpto",
+				"     ID = ERROR_FUNCTION('')) ~> removeduplicatesmunanddpto",
 				"removeduplicatesmunanddpto select(mapColumn(",
 				"          f010_cod_dpto = {COD.DEP.},",
 				"          f010_nombre_dpto = DEPARTAMENTO,",
@@ -68,7 +71,8 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"ubicacionflow derive({C0D.MUN.} = split({C0D.MUN.}, ';')[2]) ~> derivedColumn1",
+				"derivedColumn2 derive({C0D.MUN.} = split({C0D.MUN.}, ';')[2]) ~> derivedColumn1",
+				"ubicacionflow derive({} = ERROR_FUNCTION('')) ~> derivedColumn2",
 				"select1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
