@@ -59,7 +59,7 @@
 				"          DEPARTAMENTO,",
 				"          {C0D.MUN.},",
 				"          MUNICIPIO),",
-				"     Count = count({COD.DEP.})) ~> removeduplicatesmunanddpto",
+				"     Count = ERROR_FUNCTION('concat(cast(rand()*100000000000 as integer)))')) ~> removeduplicatesmunanddpto",
 				"removeduplicatesmunanddpto select(mapColumn(",
 				"          f010_cod_dpto = {COD.DEP.},",
 				"          f010_nombre_dpto = DEPARTAMENTO,",
