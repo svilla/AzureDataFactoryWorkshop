@@ -68,7 +68,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectUbicacionColums",
-				"UbicacionFlow derive({C0D.MUN.} = ERROR_FUNCTION('')) ~> RemoveSemicolumn",
+				"UbicacionFlow derive({C0D.MUN.} = replace({C0D.MUN.},';','')) ~> RemoveSemicolumn",
 				"SelectUbicacionColums sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
