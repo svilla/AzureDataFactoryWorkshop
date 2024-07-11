@@ -69,7 +69,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
-				"ubicacionflow derive({C0D.MUN.} = substring({C0D.MUN.}, indexOf({C0D.MUN.}, ';') + 1, length({C0D.MUN.}) - indexOf({C0D.MUN.}, ';') - 1)) ~> derivedColumn1",
+				"ubicacionflow derive({C0D.MUN.} = split({C0D.MUN.}, ';')[1]) ~> derivedColumn1",
 				"select1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
