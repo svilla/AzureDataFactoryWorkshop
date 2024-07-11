@@ -10,6 +10,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "UbicacionFlow"
+				},
+				{
+					"dataset": {
+						"referenceName": "ubicacionds",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
 				}
 			],
 			"sinks": [
@@ -55,6 +62,16 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> UbicacionFlow",
+				"source(output(",
+				"          f010_cod_municipio as integer,",
+				"          f010_nombre_municipio as string,",
+				"          f010_cod_dpto as integer,",
+				"          f010_nombre_dpto as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
 				"UbicacionFlow aggregate(groupBy({COD.DEP.},",
 				"          DEPARTAMENTO,",
 				"          {C0D.MUN.},",
