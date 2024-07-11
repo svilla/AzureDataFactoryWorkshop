@@ -13,7 +13,11 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "removeduplicates"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          {COD.DEP.} as integer,",
@@ -36,7 +40,8 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> ubicacionflow"
+				"     ignoreNoFilesFound: false) ~> ubicacionflow",
+				"ubicacionflow aggregate() ~> removeduplicates"
 			]
 		}
 	}
