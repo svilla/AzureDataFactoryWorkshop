@@ -12,7 +12,15 @@
 					"name": "ubicacionflow"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "ubicacionds",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "removeduplicatesmunanddpto"
@@ -43,7 +51,22 @@
 				"     ignoreNoFilesFound: false) ~> ubicacionflow",
 				"ubicacionflow aggregate(groupBy({COD.DEP.},",
 				"          {C0D.MUN.}),",
-				"     column1 = ERROR_FUNCTION('')) ~> removeduplicatesmunanddpto"
+				"     column1 = ERROR_FUNCTION('')) ~> removeduplicatesmunanddpto",
+				"removeduplicatesmunanddpto sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          f010_cod_municipio as integer,",
+				"          f010_nombre_municipio as string,",
+				"          f010_cod_dpto as integer,",
+				"          f010_nombre_dpto as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
 			]
 		}
 	}
