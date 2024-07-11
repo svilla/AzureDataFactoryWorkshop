@@ -33,7 +33,7 @@
 				"source(output(",
 				"          {COD.DEP.} as integer,",
 				"          DEPARTAMENTO as string,",
-				"          {C0D.MUN.} as integer,",
+				"          {C0D.MUN.} as string,",
 				"          MUNICIPIO as string,",
 				"          {GRUPO DE CULTIVO} as string,",
 				"          {SUBGRUPO DE CULTIVO} as string,",
