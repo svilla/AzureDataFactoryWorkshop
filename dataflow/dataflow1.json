@@ -24,6 +24,9 @@
 			"transformations": [
 				{
 					"name": "removeduplicatesmunanddpto"
+				},
+				{
+					"name": "select1"
 				}
 			],
 			"scriptLines": [
@@ -50,9 +53,18 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> ubicacionflow",
 				"ubicacionflow aggregate(groupBy({COD.DEP.},",
-				"          {C0D.MUN.}),",
+				"          DEPARTAMENTO,",
+				"          {C0D.MUN.},",
+				"          {} = ERROR_FUNCTION('')),",
 				"     column1 = ERROR_FUNCTION('')) ~> removeduplicatesmunanddpto",
-				"removeduplicatesmunanddpto sink(allowSchemaDrift: true,",
+				"removeduplicatesmunanddpto select(mapColumn(",
+				"          {COD.DEP.},",
+				"          {C0D.MUN.},",
+				"          column1",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"select1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          f010_cod_municipio as integer,",
