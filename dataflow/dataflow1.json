@@ -56,7 +56,7 @@
 				"          DEPARTAMENTO,",
 				"          {C0D.MUN.},",
 				"          MUNICIPIO),",
-				"     Count = count({COD.DEP.},{C0D.MUN.})) ~> removeduplicatesmunanddpto",
+				"     Count = count({COD.DEP.})) ~> removeduplicatesmunanddpto",
 				"removeduplicatesmunanddpto select(mapColumn(",
 				"          {} = {COD.DEP.},",
 				"          DEPARTAMENTO,",
