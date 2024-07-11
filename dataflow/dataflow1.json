@@ -59,7 +59,7 @@
 				"          DEPARTAMENTO,",
 				"          {C0D.MUN.},",
 				"          MUNICIPIO),",
-				"     Count = ERROR_FUNCTION('rank(1) over (order by {COD.DEP.})')) ~> removeduplicatesmunanddpto",
+				"     ID = substring(uuid(),0,11)) ~> removeduplicatesmunanddpto",
 				"removeduplicatesmunanddpto select(mapColumn(",
 				"          f010_cod_dpto = {COD.DEP.},",
 				"          f010_nombre_dpto = DEPARTAMENTO,",
