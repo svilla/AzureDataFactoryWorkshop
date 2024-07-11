@@ -27,9 +27,6 @@
 				},
 				{
 					"name": "SelectUbicacionColums"
-				},
-				{
-					"name": "SplitCodigoMunicipio"
 				}
 			],
 			"scriptLines": [
@@ -55,7 +52,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> UbicacionFlow",
-				"SplitCodigoMunicipio aggregate(groupBy({COD.DEP.},",
+				"UbicacionFlow aggregate(groupBy({COD.DEP.},",
 				"          DEPARTAMENTO,",
 				"          {C0D.MUN.},",
 				"          MUNICIPIO),",
@@ -68,7 +65,6 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectUbicacionColums",
-				"UbicacionFlow derive({C0D.MUN.} = split({C0D.MUN.}, ';')[2]) ~> SplitCodigoMunicipio",
 				"SelectUbicacionColums sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
