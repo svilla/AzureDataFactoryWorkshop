@@ -79,7 +79,13 @@
 				"     upsertable:false,",
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> TablaUbicacion"
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          f010_cod_municipio,",
+				"          f010_nombre_municipio,",
+				"          f010_cod_dpto,",
+				"          f010_nombre_dpto",
+				"     )) ~> TablaUbicacion"
 			]
 		}
 	}
