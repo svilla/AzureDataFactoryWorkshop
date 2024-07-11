@@ -454,7 +454,7 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/dataflow1')]",
+			"name": "[concat(parameters('factoryName'), '/UbicacionFlow')]",
 			"type": "Microsoft.DataFactory/factories/dataflows",
 			"apiVersion": "2018-06-01",
 			"properties": {
@@ -466,14 +466,32 @@
 								"referenceName": "evaluacionesagropecuariascsvds",
 								"type": "DatasetReference"
 							},
-							"name": "source1"
+							"name": "UbicacionFlow"
 						}
 					],
-					"sinks": [],
-					"transformations": [],
+					"sinks": [
+						{
+							"dataset": {
+								"referenceName": "ubicacionds",
+								"type": "DatasetReference"
+							},
+							"name": "TablaUbicacion"
+						}
+					],
+					"transformations": [
+						{
+							"name": "removeduplicatesmunanddpto"
+						},
+						{
+							"name": "SelectUbicacionColums"
+						},
+						{
+							"name": "RemoveSemicolumn"
+						}
+					],
 					"scriptLines": [
 						"source(output(",
-						"          {COD.DEP.} as string,",
+						"          {COD.DEP.} as integer,",
 						"          DEPARTAMENTO as string,",
 						"          {C0D.MUN.} as string,",
 						"          MUNICIPIO as string,",
@@ -481,24 +499,60 @@
 						"          {SUBGRUPO DE CULTIVO} as string,",
 						"          CULTIVO as string,",
 						"          {DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO} as string,",
-						"          ANO as string,",
+						"          ANO as integer,",
 						"          PERIODO as string,",
-						"          {Area Sembrada(ha)} as string,",
-						"          {Area Cosechada(ha)} as string,",
+						"          {Area Sembrada(ha)} as integer,",
+						"          {Area Cosechada(ha)} as integer,",
 						"          {Produccion(t)} as string,",
-						"          {Rendimiento(t/ha)} as string,",
+						"          {Rendimiento(t/ha)} as integer,",
 						"          {ESTADO FISICO PRODUCCION} as string,",
 						"          {NOMBRE CIENTIFICO} as string,",
 						"          {CICLO DE CULTIVO} as string",
 						"     ),",
 						"     allowSchemaDrift: true,",
 						"     validateSchema: false,",
-						"     ignoreNoFilesFound: false) ~> source1"
+						"     ignoreNoFilesFound: false) ~> UbicacionFlow",
+						"RemoveSemicolumn aggregate(groupBy({COD.DEP.},",
+						"          DEPARTAMENTO,",
+						"          {C0D.MUN.},",
+						"          MUNICIPIO),",
+						"     ID = count({C0D.MUN.})) ~> removeduplicatesmunanddpto",
+						"removeduplicatesmunanddpto select(mapColumn(",
+						"          f010_cod_dpto = {COD.DEP.},",
+						"          f010_nombre_dpto = DEPARTAMENTO,",
+						"          f010_cod_municipio = {C0D.MUN.},",
+						"          f010_nombre_municipio = MUNICIPIO",
+						"     ),",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true) ~> SelectUbicacionColums",
+						"UbicacionFlow derive({C0D.MUN.} = replace({C0D.MUN.},';','')) ~> RemoveSemicolumn",
+						"SelectUbicacionColums sink(allowSchemaDrift: true,",
+						"     validateSchema: false,",
+						"     input(",
+						"          f010_cod_municipio as integer,",
+						"          f010_nombre_municipio as string,",
+						"          f010_cod_dpto as integer,",
+						"          f010_nombre_dpto as string",
+						"     ),",
+						"     deletable:false,",
+						"     insertable:true,",
+						"     updateable:false,",
+						"     upsertable:false,",
+						"     format: 'table',",
+						"     skipDuplicateMapInputs: true,",
+						"     skipDuplicateMapOutputs: true,",
+						"     mapColumn(",
+						"          f010_cod_municipio,",
+						"          f010_nombre_municipio,",
+						"          f010_cod_dpto,",
+						"          f010_nombre_dpto",
+						"     )) ~> TablaUbicacion"
 					]
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('factoryId'), '/datasets/evaluacionesagropecuariascsvds')]"
+				"[concat(variables('factoryId'), '/datasets/evaluacionesagropecuariascsvds')]",
+				"[concat(variables('factoryId'), '/datasets/ubicacionds')]"
 			]
 		}
 	]
