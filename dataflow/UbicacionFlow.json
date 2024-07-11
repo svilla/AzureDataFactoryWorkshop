@@ -59,7 +59,7 @@
 				"          DEPARTAMENTO,",
 				"          {C0D.MUN.},",
 				"          MUNICIPIO),",
-				"     ID = ERROR_FUNCTION('')) ~> removeduplicatesmunanddpto",
+				"     ID = toInteger(left(toString(abs(random(1) * 100000000000)), 11))) ~> removeduplicatesmunanddpto",
 				"removeduplicatesmunanddpto select(mapColumn(",
 				"          f010_cod_dpto = {COD.DEP.},",
 				"          f010_nombre_dpto = DEPARTAMENTO,",
