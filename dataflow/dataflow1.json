@@ -9,16 +9,16 @@
 						"referenceName": "evaluacionesagropecuariascsvds",
 						"type": "DatasetReference"
 					},
-					"name": "cultivoflow"
+					"name": "ubicacionflow"
 				}
 			],
 			"sinks": [],
 			"transformations": [],
 			"scriptLines": [
 				"source(output(",
-				"          {COD.DEP.} as string,",
+				"          {COD.DEP.} as integer,",
 				"          DEPARTAMENTO as string,",
-				"          {C0D.MUN.} as string,",
+				"          {C0D.MUN.} as integer,",
 				"          MUNICIPIO as string,",
 				"          {GRUPO DE CULTIVO} as string,",
 				"          {SUBGRUPO DE CULTIVO} as string,",
@@ -36,7 +36,7 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> cultivoflow"
+				"     ignoreNoFilesFound: false) ~> ubicacionflow"
 			]
 		}
 	}
