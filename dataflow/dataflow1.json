@@ -59,7 +59,7 @@
 				"          DEPARTAMENTO,",
 				"          {C0D.MUN.},",
 				"          MUNICIPIO),",
-				"     ID = byPosition(1)) ~> removeduplicatesmunanddpto",
+				"     ID = byPosition()) ~> removeduplicatesmunanddpto",
 				"removeduplicatesmunanddpto select(mapColumn(",
 				"          f010_cod_dpto = {COD.DEP.},",
 				"          f010_nombre_dpto = DEPARTAMENTO,",
