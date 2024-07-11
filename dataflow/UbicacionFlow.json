@@ -18,7 +18,7 @@
 						"referenceName": "ubicacionds",
 						"type": "DatasetReference"
 					},
-					"name": "sink1"
+					"name": "TablaUbicacion"
 				}
 			],
 			"transformations": [
@@ -26,7 +26,7 @@
 					"name": "removeduplicatesmunanddpto"
 				},
 				{
-					"name": "select1"
+					"name": "SelectUbicacionColums"
 				},
 				{
 					"name": "SplitCodigoMunicipio"
@@ -67,9 +67,9 @@
 				"          f010_nombre_municipio = MUNICIPIO",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> select1",
+				"     skipDuplicateMapOutputs: true) ~> SelectUbicacionColums",
 				"UbicacionFlow derive({C0D.MUN.} = split({C0D.MUN.}, ';')[2]) ~> SplitCodigoMunicipio",
-				"select1 sink(allowSchemaDrift: true,",
+				"SelectUbicacionColums sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          f010_cod_municipio as integer,",
@@ -83,7 +83,7 @@
 				"     upsertable:false,",
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true) ~> TablaUbicacion"
 			]
 		}
 	}
