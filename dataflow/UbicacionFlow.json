@@ -21,13 +21,6 @@
 			],
 			"sinks": [
 				{
-					"dataset": {
-						"referenceName": "ubicacionds",
-						"type": "DatasetReference"
-					},
-					"name": "TablaUbicacion"
-				},
-				{
 					"name": "sink1"
 				}
 			],
@@ -40,6 +33,9 @@
 				},
 				{
 					"name": "RemoveSemicolumnCharacter"
+				},
+				{
+					"name": "exists1"
 				}
 			],
 			"scriptLines": [
@@ -89,27 +85,9 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectUbicacionColums",
 				"removeduplicatesmunanddpto derive({C0D.MUN.} = replace({C0D.MUN.},';','')) ~> RemoveSemicolumnCharacter",
-				"source1 sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     input(",
-				"          f010_cod_municipio as integer,",
-				"          f010_nombre_municipio as string,",
-				"          f010_cod_dpto as integer,",
-				"          f010_nombre_dpto as string",
-				"     ),",
-				"     deletable:false,",
-				"     insertable:true,",
-				"     updateable:false,",
-				"     upsertable:false,",
-				"     format: 'table',",
-				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true,",
-				"     mapColumn(",
-				"          f010_cod_municipio,",
-				"          f010_nombre_municipio,",
-				"          f010_cod_dpto,",
-				"          f010_nombre_dpto",
-				"     )) ~> TablaUbicacion",
+				"source1 exists(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     negate:false,",
+				"     broadcast: 'auto')~> exists1",
 				"SelectUbicacionColums sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
