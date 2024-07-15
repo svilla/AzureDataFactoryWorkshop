@@ -35,7 +35,7 @@
 					"name": "RemoveSemicolumnCharacter"
 				},
 				{
-					"name": "exists1"
+					"name": "DiscardRepeatedRecords"
 				}
 			],
 			"scriptLines": [
@@ -90,8 +90,8 @@
 				"     && SelectUbicacionColums@f010_cod_municipio == UbicacionTable@f010_cod_municipio",
 				"     && SelectUbicacionColums@f010_nombre_municipio == UbicacionTable@f010_nombre_municipio,",
 				"     negate:true,",
-				"     broadcast: 'auto')~> exists1",
-				"exists1 sink(allowSchemaDrift: true,",
+				"     broadcast: 'auto')~> DiscardRepeatedRecords",
+				"DiscardRepeatedRecords sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> sink1"
