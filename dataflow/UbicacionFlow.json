@@ -21,12 +21,12 @@
 			],
 			"sinks": [
 				{
-					"name": "sink1"
+					"name": "SaveUbicacionRecords"
 				}
 			],
 			"transformations": [
 				{
-					"name": "removeduplicatesmunanddpto"
+					"name": "RemoveDuplicatedRecords"
 				},
 				{
 					"name": "SelectUbicacionColums"
@@ -75,7 +75,7 @@
 				"          DEPARTAMENTO,",
 				"          {C0D.MUN.},",
 				"          MUNICIPIO),",
-				"     ID = count({C0D.MUN.})) ~> removeduplicatesmunanddpto",
+				"     ID = count({C0D.MUN.})) ~> RemoveDuplicatedRecords",
 				"RemoveSemicolumnCharacter select(mapColumn(",
 				"          f010_cod_dpto = {COD.DEP.},",
 				"          f010_nombre_dpto = DEPARTAMENTO,",
@@ -84,7 +84,7 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectUbicacionColums",
-				"removeduplicatesmunanddpto derive({C0D.MUN.} = replace({C0D.MUN.},';','')) ~> RemoveSemicolumnCharacter",
+				"RemoveDuplicatedRecords derive({C0D.MUN.} = replace({C0D.MUN.},';','')) ~> RemoveSemicolumnCharacter",
 				"SelectUbicacionColums, UbicacionTable exists(SelectUbicacionColums@f010_cod_dpto == UbicacionTable@f010_cod_municipio",
 				"     && SelectUbicacionColums@f010_nombre_dpto == UbicacionTable@f010_nombre_dpto",
 				"     && SelectUbicacionColums@f010_cod_municipio == UbicacionTable@f010_cod_municipio",
@@ -94,7 +94,7 @@
 				"DiscardRepeatedRecords sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true) ~> SaveUbicacionRecords"
 			]
 		}
 	}
