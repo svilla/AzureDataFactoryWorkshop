@@ -44,7 +44,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> EvaluacionesDS",
-				"ConcatenatedValues aggregate(groupBy(computed_column = sha2(256, columns())),",
+				"ConcatenatedValues aggregate(groupBy(computed_grouping = sha2(256, columns())),",
 				"     each(match(true()))) ~> aggregate1",
 				"EvaluacionesDS derive(concatenated_values = concat(\r",
 				"    coalesce(normalize(toString({CULTIVO})), ''),\r",
