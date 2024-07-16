@@ -56,7 +56,7 @@
 				"            '10000000000', \r",
 				"            toString(\r",
 				"                abs(\r",
-				"                    crc32(normalize(toString(max({NOMBRE CIENTIFICO}))))\r",
+				"                    crc32(max(normalize(toString({NOMBRE CIENTIFICO}))))\r",
 				"                )\r",
 				"            )\r",
 				"        ), \r",
