@@ -47,18 +47,16 @@
 				"          {SUBGRUPO DE CULTIVO},",
 				"          {DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO},",
 				"          {CICLO DE CULTIVO}),",
-				"     ID = coalesce(\r",
-				"    toInteger(left(toString(abs(crc32(concatWS('', \r",
-				"        coalesce(first(CULTIVO), ''),\r",
-				"        coalesce(first({NOMBRE CIENTIFICO}), ''),\r",
-				"        coalesce(first({GRUPO DE CULTIVO}), ''),\r",
-				"        coalesce(first({SUBGRUPO DE CULTIVO}), ''),\r",
-				"        coalesce(first({DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO}), ''),\r",
-				"        coalesce(first({CICLO DE CULTIVO}), ''),\r",
-				"        toString(count(1))\r",
-				"    )))), 11)),\r",
-				"    0\r",
-				")) ~> aggregate1"
+				"     ID = toInteger(left(toString(abs(crc32(concatWS('', \r",
+				"    coalesce(toString(first(CULTIVO)), ''),\r",
+				"    coalesce(toString(first({NOMBRE CIENTIFICO})), ''),\r",
+				"    coalesce(toString(first({GRUPO DE CULTIVO})), ''),\r",
+				"    coalesce(toString(first({SUBGRUPO DE CULTIVO})), ''),\r",
+				"    coalesce(toString(first({DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO})), ''),\r",
+				"    coalesce(toString(first({CICLO DE CULTIVO})), ''),\r",
+				"    toString(count(1)),\r",
+				"    toString(currentTimestamp())\r",
+				")))), 11))) ~> aggregate1"
 			]
 		}
 	}
