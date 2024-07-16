@@ -47,7 +47,7 @@
 				"          {SUBGRUPO DE CULTIVO},",
 				"          {DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO},",
 				"          {CICLO DE CULTIVO}),",
-				"     ID = toInteger(left(toString(abs(crc32(concatWS('', \r",
+				"     ID = toInteger(right(concat('10000000000', toString(abs(crc32(concatWS('', \r",
 				"    coalesce(toString(first(CULTIVO)), ''),\r",
 				"    coalesce(toString(first({NOMBRE CIENTIFICO})), ''),\r",
 				"    coalesce(toString(first({GRUPO DE CULTIVO})), ''),\r",
@@ -56,7 +56,7 @@
 				"    coalesce(toString(first({CICLO DE CULTIVO})), ''),\r",
 				"    toString(count(1)),\r",
 				"    toString(currentTimestamp())\r",
-				")))), 11))) ~> aggregate1"
+				"))))), 11))) ~> aggregate1"
 			]
 		}
 	}
