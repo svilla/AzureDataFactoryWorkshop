@@ -44,7 +44,10 @@
 				"EvaluacionesDS aggregate(groupBy(CULTIVO,",
 				"          {NOMBRE CIENTIFICO},",
 				"          {GRUPO DE CULTIVO},",
-				"          {SUBGRUPO DE CULTIVO})) ~> aggregate1"
+				"          {SUBGRUPO DE CULTIVO},",
+				"          {DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO},",
+				"          {CICLO DE CULTIVO},",
+				"          {} = ERROR_FUNCTION(''))) ~> aggregate1"
 			]
 		}
 	}
