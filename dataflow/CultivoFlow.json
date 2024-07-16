@@ -49,11 +49,11 @@
 				"          {CICLO DE CULTIVO}),",
 				"     ID = toInteger(right(concat('10000000000', toString(abs(crc32(concatWS('', \r",
 				"    coalesce(toString(CULTIVO), ''),\r",
-				"    coalesce(toString(NOMBRE_CIENTIFICO), ''),\r",
-				"    coalesce(toString(GRUPO_DE_CULTIVO), ''),\r",
-				"    coalesce(toString(SUBGRUPO_DE_CULTIVO), ''),\r",
-				"    coalesce(toString(DESAGREGACION), ''),\r",
-				"    coalesce(toString(CICLO_DE_CULTIVO), ''),\r",
+				"    coalesce(toString({NOMBRE CIENTIFICO}), ''),\r",
+				"    coalesce(toString({GRUPO DE CULTIVO}), ''),\r",
+				"    coalesce(toString({SUBGRUPO DE CULTIVO}), ''),\r",
+				"    coalesce(toString({DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO}), ''),\r",
+				"    coalesce(toString({CICLO DE CULTIVO}), ''),\r",
 				"    toString(currentTimestamp())\r",
 				"))))), 11))) ~> aggregate1"
 			]
