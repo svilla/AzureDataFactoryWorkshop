@@ -86,7 +86,7 @@
 				"RemoveSemicolumnCharacter select(skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectUbicacionColums",
 				"RemoveDuplicatedRecords derive({C0D.MUN.} = replace({C0D.MUN.},';','')) ~> RemoveSemicolumnCharacter",
-				"derivedColumn1, UbicacionTable exists(ERROR_FUNCTION('equals({COD.DEP.},f010_cod_dpto) and equalsIgnoreCase(DEPARTAMENTO,f010_nombre_dpto) and equals({C0D.MUN.}, f010_cod_municipio) and equalsIgnoreCase(MUNICIPIO, f010_nombre_municipio)'),",
+				"derivedColumn1, UbicacionTable exists(equals({COD.DEP.},f010_cod_dpto) && equalsIgnoreCase(DEPARTAMENTO,f010_nombre_dpto) && equals({C0D.MUN.}, f010_cod_municipio) && equalsIgnoreCase(MUNICIPIO, f010_nombre_municipio),",
 				"     negate:true,",
 				"     broadcast: 'auto')~> DiscardRepeatedRecords",
 				"SelectUbicacionColums derive({COD.DEP.} = toInteger({COD.DEP.}),",
