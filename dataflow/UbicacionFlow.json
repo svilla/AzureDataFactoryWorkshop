@@ -88,7 +88,9 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     outputAssertFailedRows: true) ~> SaveUbicacionRecords"
+				"     outputAssertFailedRows: true,",
+				"     assertFailure_container: 'evalagropecuariasc',",
+				"     assertFailure_folderPath: 'Errors') ~> SaveUbicacionRecords"
 			]
 		}
 	}
