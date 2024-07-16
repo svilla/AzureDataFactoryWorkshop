@@ -47,7 +47,7 @@
 				"          {SUBGRUPO DE CULTIVO},",
 				"          {DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO},",
 				"          {CICLO DE CULTIVO}),",
-				"     column1 = true()) ~> aggregate1"
+				"     ID = 1) ~> aggregate1"
 			]
 		}
 	}
