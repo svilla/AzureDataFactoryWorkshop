@@ -56,7 +56,7 @@
 				"            '10000000000', \r",
 				"            toString(\r",
 				"                abs(\r",
-				"                    max(crc32(concatenated_values))\r",
+				"                    crc32(max(concatenated_values))\r",
 				"                )\r",
 				"            )\r",
 				"        ), \r",
@@ -68,8 +68,6 @@
 				"    coalesce(normalize(toString({NOMBRE CIENTIFICO})), ''),\r",
 				"    coalesce(normalize(toString({GRUPO DE CULTIVO})), ''),\r",
 				"    coalesce(normalize(toString({SUBGRUPO DE CULTIVO})), ''),\r",
-				"    coalesce(normalize(toString({DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO})), ''),\r",
-				"    coalesce(normalize(toString({CICLO DE CULTIVO})), ''),\r",
 				"    toString(currentTimestamp())\r",
 				")\r",
 				") ~> ConcatenatedValues"
