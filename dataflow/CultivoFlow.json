@@ -68,8 +68,6 @@
 				"    coalesce(toString({NOMBRE CIENTIFICO}), ''),\r",
 				"    coalesce(toString({GRUPO DE CULTIVO}), ''),\r",
 				"    coalesce(toString({SUBGRUPO DE CULTIVO}), ''),\r",
-				"    coalesce(toString({DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO}), ''),\r",
-				"    coalesce(toString({CICLO DE CULTIVO}), ''),\r",
 				"    toString(currentTimestamp())\r",
 				")\r",
 				") ~> ConcatenatedValues"
