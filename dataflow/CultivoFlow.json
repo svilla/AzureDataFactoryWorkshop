@@ -46,8 +46,7 @@
 				"          {GRUPO DE CULTIVO},",
 				"          {SUBGRUPO DE CULTIVO},",
 				"          {DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO},",
-				"          {CICLO DE CULTIVO},",
-				"          {} = ERROR_FUNCTION(''))) ~> aggregate1"
+				"          {CICLO DE CULTIVO})) ~> aggregate1"
 			]
 		}
 	}
