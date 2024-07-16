@@ -13,7 +13,11 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "aggregate1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          {COD.DEP.} as string,",
@@ -36,7 +40,8 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> EvaluacionesDS"
+				"     ignoreNoFilesFound: false) ~> EvaluacionesDS",
+				"EvaluacionesDS aggregate() ~> aggregate1"
 			]
 		}
 	}
