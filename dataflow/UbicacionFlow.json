@@ -40,6 +40,9 @@
 				},
 				{
 					"name": "DiscardRepeatedRecords"
+				},
+				{
+					"name": "derivedColumn1"
 				}
 			],
 			"scriptLines": [
@@ -83,12 +86,13 @@
 				"RemoveSemicolumnCharacter select(skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectUbicacionColums",
 				"RemoveDuplicatedRecords derive({C0D.MUN.} = replace({C0D.MUN.},';','')) ~> RemoveSemicolumnCharacter",
-				"SelectUbicacionColums, UbicacionTable exists(SelectUbicacionColums@f010_cod_dpto == UbicacionTable@f010_cod_municipio",
+				"derivedColumn1, UbicacionTable exists(SelectUbicacionColums@f010_cod_dpto == UbicacionTable@f010_cod_municipio",
 				"     && SelectUbicacionColums@f010_nombre_dpto == UbicacionTable@f010_nombre_dpto",
 				"     && SelectUbicacionColums@f010_cod_municipio == UbicacionTable@f010_cod_municipio",
 				"     && SelectUbicacionColums@f010_nombre_municipio == UbicacionTable@f010_nombre_municipio,",
 				"     negate:true,",
 				"     broadcast: 'auto')~> DiscardRepeatedRecords",
+				"SelectUbicacionColums derive({COD.DEP.} = toInteger({COD.DEP.})) ~> derivedColumn1",
 				"DiscardRepeatedRecords sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
