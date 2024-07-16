@@ -18,7 +18,11 @@
 						"referenceName": "ubicacionds",
 						"type": "DatasetReference"
 					},
-					"name": "SaveUbicacionRecords"
+					"name": "SaveUbicacionRecords",
+					"rejectedDataLinkedService": {
+						"referenceName": "evalagropecuariasstorage",
+						"type": "LinkedServiceReference"
+					}
 				}
 			],
 			"transformations": [
@@ -83,7 +87,8 @@
 				"     upsertable:false,",
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> SaveUbicacionRecords"
+				"     skipDuplicateMapOutputs: true,",
+				"     outputAssertFailedRows: true) ~> SaveUbicacionRecords"
 			]
 		}
 	}
