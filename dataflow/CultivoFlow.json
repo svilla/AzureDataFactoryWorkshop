@@ -16,6 +16,9 @@
 			"transformations": [
 				{
 					"name": "aggregate1"
+				},
+				{
+					"name": "ConcatenatedValues"
 				}
 			],
 			"scriptLines": [
@@ -41,7 +44,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> EvaluacionesDS",
-				"EvaluacionesDS aggregate(groupBy(CULTIVO,",
+				"ConcatenatedValues aggregate(groupBy(CULTIVO,",
 				"          {NOMBRE CIENTIFICO},",
 				"          {GRUPO DE CULTIVO},",
 				"          {SUBGRUPO DE CULTIVO},",
@@ -55,7 +58,7 @@
 				"                abs(\r",
 				"                    crc32(\r",
 				"                        concat(\r",
-				"                            coalesce(toString(first({CULTIVO})), ''),\r",
+				"                            coalesce(toString(first(CULTIVO)), ''),\r",
 				"                            coalesce(toString(first({NOMBRE CIENTIFICO})), ''),\r",
 				"                            coalesce(toString(first({GRUPO DE CULTIVO})), ''),\r",
 				"                            coalesce(toString(first({SUBGRUPO DE CULTIVO})), ''),\r",
@@ -71,7 +74,17 @@
 				"        11\r",
 				"    )\r",
 				")\r",
-				") ~> aggregate1"
+				") ~> aggregate1",
+				"EvaluacionesDS derive(concatenated_values = concat(\r",
+				"    coalesce(toString({CULTIVO}), ''),\r",
+				"    coalesce(toString({NOMBRE CIENTIFICO}), ''),\r",
+				"    coalesce(toString({GRUPO DE CULTIVO}), ''),\r",
+				"    coalesce(toString({SUBGRUPO DE CULTIVO}), ''),\r",
+				"    coalesce(toString({DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO}), ''),\r",
+				"    coalesce(toString({CICLO DE CULTIVO}), ''),\r",
+				"    toString(currentTimestamp())\r",
+				")\r",
+				") ~> ConcatenatedValues"
 			]
 		}
 	}
