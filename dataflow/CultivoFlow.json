@@ -73,7 +73,7 @@
 				"    )\r",
 				")\r",
 				") ~> aggregate1",
-				"EvaluacionesDS derive({Area Cosechada(ha)} = concat(\r",
+				"EvaluacionesDS derive(Value = concat(\r",
 				"    coalesce(toString(first(CULTIVO)), ''),\r",
 				"    coalesce(toString(first(`NOMBRE CIENTIFICO`)), ''),\r",
 				"    coalesce(toString(first(`GRUPO DE CULTIVO`)), ''),\r",
