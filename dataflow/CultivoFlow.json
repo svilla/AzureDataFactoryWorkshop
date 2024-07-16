@@ -73,7 +73,17 @@
 				"    )\r",
 				")\r",
 				") ~> aggregate1",
-				"EvaluacionesDS derive(Value = ERROR_FUNCTION('')) ~> derivedColumn1"
+				"EvaluacionesDS derive({Area Cosechada(ha)} = concat(\r",
+				"    coalesce(toString(first(CULTIVO)), ''),\r",
+				"    coalesce(toString(first(`NOMBRE CIENTIFICO`)), ''),\r",
+				"    coalesce(toString(first(`GRUPO DE CULTIVO`)), ''),\r",
+				"    coalesce(toString(first(`SUBGRUPO DE CULTIVO`)), ''),\r",
+				"    coalesce(toString(first(`DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO`)), ''),\r",
+				"    coalesce(toString(first(`CICLO DE CULTIVO`)), ''),\r",
+				"    toString(count(1)),\r",
+				"    toString(currentTimestamp())\r",
+				")\r",
+				") ~> derivedColumn1"
 			]
 		}
 	}
