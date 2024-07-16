@@ -44,17 +44,15 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> EvaluacionesDS",
-				"ConcatenatedValues aggregate(groupBy(computed_grouping = sha2(256, columns())),",
-				"     column1 = ERROR_FUNCTION(''),",
-				"          each(match(true()), true() = {NOMBRE CIENTIFICO})) ~> aggregate1",
+				"ConcatenatedValues aggregate(groupBy(computed_grouping = sha2(256,columns())),",
+				"     each(match(true()), true() = {NOMBRE CIENTIFICO})) ~> aggregate1",
 				"EvaluacionesDS derive(concatenated_values = concat(\r",
 				"    coalesce(normalize(toString({CULTIVO})), ''),\r",
 				"    coalesce(normalize(toString({NOMBRE CIENTIFICO})), ''),\r",
 				"    coalesce(normalize(toString({GRUPO DE CULTIVO})), ''),\r",
 				"    coalesce(normalize(toString({SUBGRUPO DE CULTIVO})), ''),\r",
 				"    toString(currentTimestamp())\r",
-				")\r",
-				") ~> ConcatenatedValues"
+				")) ~> ConcatenatedValues"
 			]
 		}
 	}
