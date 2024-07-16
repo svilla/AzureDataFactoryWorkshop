@@ -39,7 +39,7 @@
 					"name": "RemoveSemicolumnCharacter"
 				},
 				{
-					"name": "DiscardRepeatedRecords"
+					"name": "exists1"
 				}
 			],
 			"scriptLines": [
@@ -89,12 +89,11 @@
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> SelectUbicacionColums",
-				"RemoveDuplicatedRecords derive({C0D.MUN.} = toInteger(replace({C0D.MUN.},';','')),",
-				"          {COD.DEP.} = toInteger({COD.DEP.})) ~> RemoveSemicolumnCharacter",
-				"SelectUbicacionColums, UbicacionDs exists(SelectUbicacionColums@{COD.DEP.} == UbicacionTable@f010_cod_dpto && SelectUbicacionColums@f010_nombre_dpto == UbicacionTable@f010_nombre_dpto && {C0D.MUN.} == UbicacionTable@f010_cod_municipio && SelectUbicacionColums@f010_nombre_municipio == UbicacionTable@f010_nombre_municipio,",
-				"     negate:true,",
-				"     broadcast: 'auto')~> DiscardRepeatedRecords",
-				"DiscardRepeatedRecords sink(allowSchemaDrift: true,",
+				"RemoveDuplicatedRecords derive({C0D.MUN.} = toInteger(replace({C0D.MUN.},';',''))) ~> RemoveSemicolumnCharacter",
+				"SelectUbicacionColums, UbicacionDs exists(SelectUbicacionColums@f010_cod_dpto == UbicacionDs@f010_cod_dpto,",
+				"     negate:false,",
+				"     broadcast: 'auto')~> exists1",
+				"exists1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          f010_cod_municipio as integer,",
