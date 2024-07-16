@@ -39,7 +39,7 @@
 					"name": "RemoveSemicolumnCharacter"
 				},
 				{
-					"name": "exists1"
+					"name": "PreventDuplicateInserts"
 				}
 			],
 			"scriptLines": [
@@ -93,10 +93,10 @@
 				"SelectUbicacionColums, UbicacionDs exists(SelectUbicacionColums@f010_nombre_dpto == UbicacionDs@f010_nombre_dpto",
 				"     && SelectUbicacionColums@f010_cod_municipio == UbicacionDs@f010_cod_municipio",
 				"     && SelectUbicacionColums@f010_nombre_municipio == UbicacionDs@f010_nombre_municipio",
-				"     && SelectUbicacionColums@f010_cod_dpto == toInteger(UbicacionDs@f010_cod_dpto),",
+				"     && SelectUbicacionColums@f010_cod_dpto == UbicacionDs@f010_cod_dpto,",
 				"     negate:true,",
-				"     broadcast: 'auto')~> exists1",
-				"exists1 sink(allowSchemaDrift: true,",
+				"     broadcast: 'auto')~> PreventDuplicateInserts",
+				"PreventDuplicateInserts sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     input(",
 				"          f010_cod_municipio as integer,",
