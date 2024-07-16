@@ -91,7 +91,7 @@
 				"     skipDuplicateMapOutputs: true) ~> SelectUbicacionColums",
 				"RemoveDuplicatedRecords derive({C0D.MUN.} = toInteger(replace({C0D.MUN.},';','')),",
 				"          {COD.DEP.} = toString({COD.DEP.})) ~> RemoveSemicolumnCharacter",
-				"SelectUbicacionColums, UbicacionDs exists(SelectUbicacionColums@f010_cod_dpto == UbicacionDs@f010_cod_dpto,",
+				"SelectUbicacionColums, UbicacionDs exists(SelectUbicacionColums@f010_cod_dpto == ERROR_FUNCTION(''),",
 				"     negate:false,",
 				"     broadcast: 'auto')~> exists1",
 				"exists1 sink(allowSchemaDrift: true,",
