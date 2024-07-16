@@ -45,7 +45,7 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> EvaluacionesDS",
 				"ConcatenatedValues aggregate(groupBy(computed_Column = sha2(256, columns())),",
-				"     ID = ERROR_FUNCTION('')) ~> aggregate1",
+				"     column1 = ERROR_FUNCTION('')) ~> aggregate1",
 				"EvaluacionesDS derive(concatenated_values = concat(\r",
 				"    coalesce(normalize(toString({CULTIVO})), ''),\r",
 				"    coalesce(normalize(toString({NOMBRE CIENTIFICO})), ''),\r",
