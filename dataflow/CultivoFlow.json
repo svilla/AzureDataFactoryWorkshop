@@ -55,7 +55,7 @@
 				"        concat(\r",
 				"            '10000000000', \r",
 				"            toString(\r",
-				"                abs(\r",
+				"                max(\r",
 				"                    crc32(\r",
 				"                        concat(\r",
 				"                            normalize(toString(max({NOMBRE CIENTIFICO}))),\r",
