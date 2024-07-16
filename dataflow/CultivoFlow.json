@@ -41,7 +41,10 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> EvaluacionesDS",
-				"EvaluacionesDS aggregate() ~> aggregate1"
+				"EvaluacionesDS aggregate(groupBy(CULTIVO,",
+				"          {NOMBRE CIENTIFICO},",
+				"          {GRUPO DE CULTIVO},",
+				"          {SUBGRUPO DE CULTIVO})) ~> aggregate1"
 			]
 		}
 	}
