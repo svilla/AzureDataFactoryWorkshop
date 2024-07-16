@@ -47,7 +47,15 @@
 				"          {SUBGRUPO DE CULTIVO},",
 				"          {DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO},",
 				"          {CICLO DE CULTIVO}),",
-				"     ID = ERROR_FUNCTION('')) ~> aggregate1"
+				"     ID = toInteger(left(toString(abs(crc32(concatWS('', \r",
+				"    first(CULTIVO),\r",
+				"    first({NOMBRE CIENTIFICO}),\r",
+				"    first({GRUPO DE CULTIVO}),\r",
+				"    first({SUBGRUPO DE CULTIVO}),\r",
+				"    first({DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO}),\r",
+				"    first({CICLO DE CULTIVO}),\r",
+				"    toString(count(1))\r",
+				")))), 11))) ~> aggregate1"
 			]
 		}
 	}
