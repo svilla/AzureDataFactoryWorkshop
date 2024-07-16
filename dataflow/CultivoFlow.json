@@ -22,6 +22,9 @@
 				},
 				{
 					"name": "derivedColumn2"
+				},
+				{
+					"name": "derivedColumn3"
 				}
 			],
 			"scriptLines": [
@@ -47,7 +50,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> EvaluacionesDS",
-				"derivedColumn2 aggregate(groupBy(CULTIVO,",
+				"derivedColumn3 aggregate(groupBy(CULTIVO,",
 				"          {NOMBRE CIENTIFICO},",
 				"          {GRUPO DE CULTIVO},",
 				"          {SUBGRUPO DE CULTIVO},",
@@ -87,7 +90,17 @@
 				"    coalesce(toString(`CICLO DE CULTIVO`), ''),\r",
 				"    toString(currentTimestamp())\r",
 				")) ~> derivedColumn1",
-				"derivedColumn1 derive(column1 = ERROR_FUNCTION('')) ~> derivedColumn2"
+				"derivedColumn1 derive(column1 = abs(crc32(concat(\r",
+				"    coalesce(toString(CULTIVO), ''),\r",
+				"    coalesce(toString(`NOMBRE CIENTIFICO`), ''),\r",
+				"    coalesce(toString(`GRUPO DE CULTIVO`), ''),\r",
+				"    coalesce(toString(`SUBGRUPO DE CULTIVO`), ''),\r",
+				"    coalesce(toString(`DESAGREGACION REGIONAL Y/O SISTEMA PRODUCTIVO`), ''),\r",
+				"    coalesce(toString(`CICLO DE CULTIVO`), ''),\r",
+				"    toString(currentTimestamp())\r",
+				")))\r",
+				") ~> derivedColumn2",
+				"derivedColumn2 derive(column1 = ERROR_FUNCTION('')) ~> derivedColumn3"
 			]
 		}
 	}
