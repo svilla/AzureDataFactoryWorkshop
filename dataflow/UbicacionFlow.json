@@ -16,7 +16,7 @@
 						"referenceName": "ubicacionds",
 						"type": "DatasetReference"
 					},
-					"name": "UbicacionTable"
+					"name": "UbicacionDs"
 				}
 			],
 			"sinks": [
@@ -74,7 +74,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> UbicacionTable",
+				"     format: 'table') ~> UbicacionDs",
 				"UbicacionFlow aggregate(groupBy({COD.DEP.},",
 				"          DEPARTAMENTO,",
 				"          {C0D.MUN.},",
@@ -91,7 +91,7 @@
 				"     skipDuplicateMapOutputs: true) ~> SelectUbicacionColums",
 				"RemoveDuplicatedRecords derive({C0D.MUN.} = toInteger(replace({C0D.MUN.},';','')),",
 				"          {COD.DEP.} = toInteger({COD.DEP.})) ~> RemoveSemicolumnCharacter",
-				"SelectUbicacionColums, UbicacionTable exists(SelectUbicacionColums@{COD.DEP.} == UbicacionTable@f010_cod_dpto && SelectUbicacionColums@f010_nombre_dpto == UbicacionTable@f010_nombre_dpto && {C0D.MUN.} == UbicacionTable@f010_cod_municipio && SelectUbicacionColums@f010_nombre_municipio == UbicacionTable@f010_nombre_municipio,",
+				"SelectUbicacionColums exists(SelectUbicacionColums@{COD.DEP.} == UbicacionTable@f010_cod_dpto && SelectUbicacionColums@f010_nombre_dpto == UbicacionTable@f010_nombre_dpto && {C0D.MUN.} == UbicacionTable@f010_cod_municipio && SelectUbicacionColums@f010_nombre_municipio == UbicacionTable@f010_nombre_municipio,",
 				"     negate:true,",
 				"     broadcast: 'auto')~> DiscardRepeatedRecords",
 				"DiscardRepeatedRecords sink(allowSchemaDrift: true,",
