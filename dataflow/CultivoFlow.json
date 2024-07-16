@@ -16,6 +16,9 @@
 			"transformations": [
 				{
 					"name": "aggregate1"
+				},
+				{
+					"name": "derivedColumn1"
 				}
 			],
 			"scriptLines": [
@@ -41,7 +44,7 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> EvaluacionesDS",
-				"EvaluacionesDS aggregate(groupBy(CULTIVO,",
+				"derivedColumn1 aggregate(groupBy(CULTIVO,",
 				"          {NOMBRE CIENTIFICO},",
 				"          {GRUPO DE CULTIVO},",
 				"          {SUBGRUPO DE CULTIVO},",
@@ -69,7 +72,8 @@
 				"        11\r",
 				"    )\r",
 				")\r",
-				") ~> aggregate1"
+				") ~> aggregate1",
+				"EvaluacionesDS derive(Value = ERROR_FUNCTION('')) ~> derivedColumn1"
 			]
 		}
 	}
